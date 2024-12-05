@@ -84,3 +84,6 @@ prompt = "Build a web interface for students to search their subjects with diffe
 response = model.generate_content(prompt)
 print(response.text)
 ```
+
+## Acknowledgments:
+### Thanks to the Gemini AI team for their support and resources!
