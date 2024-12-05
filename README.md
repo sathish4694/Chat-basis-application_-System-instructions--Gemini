@@ -75,10 +75,10 @@ response1 = chat.send_message("Do you feel stressed in your role?")
 print(response1.text)
 
 # Example 3: Code Generation
-python
-Copy code
+```bash
 instruction = "You are a coding expert that specializes in front-end interfaces. Now build a sample webpage for students."
 model = GenAi.GenerativeModel("models/gemini-1.5-pro-latest", system_instruction=instruction)
 prompt = "Build a web interface for students to search their subjects with different color formats."
 response = model.generate_content(prompt)
 print(response.text)
+
