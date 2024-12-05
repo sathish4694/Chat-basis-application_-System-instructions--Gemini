@@ -32,3 +32,53 @@ Run the following command to install the required dependencies:
 - Google Colab (optional)
 - Google Cloud API key for accessing the [Gemini API](https://cloud.google.com/generative-ai)
 
+# 2. Set up the Google API Key
+
+Enable the Generative AI API for your project.
+Obtain the API key and store it securely.
+In Colab, store your API key in the secrets manager or use the following code snippet to load it:
+
+python
+Copy code
+from google.colab import userdata
+GOOGLE_API_KEY = userdata.get('GOOGLE_API_KEY')
+
+# 3. Configure the Gemini model
+Set up and configure the google-generativeai SDK with your API key:
+
+python
+Copy code
+import google.generativeai as GenAi
+
+GenAi.configure(api_key=GOOGLE_API_KEY)
+Usage
+
+# Example 1: Role-Based Interaction (Project Manager)
+python
+Copy code
+model = GenAi.GenerativeModel(
+    "models/gemini-1.5-pro-latest",
+    system_instruction="You are a project manager. Your name is Sathish."
+)
+
+response = model.generate_content("Can you give me your roles and responsibilities in your current project?")
+print(response.text)
+
+# Example 2: Multi-Turn Conversations
+python
+Copy code
+chat = model.start_chat()
+response = chat.send_message("How was your day?")
+print(response.text)
+
+response1 = chat.send_message("Do you feel stressed in your role?")
+print(response1.text)
+
+# Example 3: Code Generation
+python
+Copy code
+instruction = "You are a coding expert that specializes in front-end interfaces. Now build a sample webpage for students."
+model = GenAi.GenerativeModel("models/gemini-1.5-pro-latest", system_instruction=instruction)
+prompt = "Build a web interface for students to search their subjects with different color formats."
+response = model.generate_content(prompt)
+print(response.text)
